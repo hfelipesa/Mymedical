@@ -1,5 +1,9 @@
 package ui;
 
+import model.Doctor;
+import model.Patient;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIMenu {
@@ -63,5 +67,25 @@ public class UIMenu {
                     break;
             }
         }while (response != 0);
+    }
+
+    private  static void Auth(int userType){
+        //userType = 1 Doctor
+        //userType = 2 Patient
+        ArrayList<Doctor> doctorsList = new ArrayList<>();
+        doctorsList.add(new Doctor("Felipe sanchez", "felipe@gmail.com", "123456", "Cardiologia","C1"));
+        doctorsList.add(new Doctor("Karen sosa", "Karen@gmail.com","123456", "Pediatra","C2"));
+
+        ArrayList<Patient> patientList = new ArrayList<>();
+        patientList.add(new Patient());
+
+
+        if (userType == 1){
+            System.out.println("Doctor");
+            System.out.println("Enter your speciality");
+        }else if (userType == 2){
+            System.out.println("Patient");
+            System.out.println("Enter your birthday date: dd/mm/yyyy");
+        }
     }
 }

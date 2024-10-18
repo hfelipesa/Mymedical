@@ -55,6 +55,10 @@ public class Patient extends User {
                 ", birthDate='" + birthDate + '\'' +
                 '}';
     }
+    //Metodo abstracto data
+    @Override
+    public void showData() {
+    }
     //Metodos Compartamiento
 
 

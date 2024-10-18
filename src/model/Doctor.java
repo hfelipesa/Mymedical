@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Doctor extends User {
-        private String speciality;
-        private String licence;
+    private String speciality;
+    private String licence;
 
         //Constructor
-        public Doctor(String name,String email, String phoneNumber, String speciality, String licence) {
+    public Doctor(String name,String email, String phoneNumber, String speciality, String licence) {
             super(name, email, phoneNumber);
             System.out.println("Los datos del doctor asignado: ");
             this.speciality = speciality;
@@ -34,6 +34,12 @@ public class Doctor extends User {
     public ArrayList<availableAppointment> getAvailableAppointments(){
         return availableAppointments;
     }
+    //Metodo abstracto data
+    @Override
+    public void showData() {
+
+    }
+
     @Override
     public String toString() {
     return super.toString() + "\nSpeciality: " + speciality +
@@ -64,7 +70,7 @@ public class Doctor extends User {
             "date=" + date + ",\n" +
             "time='" + time + '\'' +
             "\n}";
-}
+       }
     }
 
 }

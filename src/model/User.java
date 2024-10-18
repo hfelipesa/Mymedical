@@ -1,6 +1,6 @@
 package model;
 
-public class User {
+public abstract class User {
     public static Integer id = 0;
     private String name;
     private String email;
@@ -40,10 +40,11 @@ public class User {
             this.phoneNumber = phoneNumber;
         }
     }
-
-        @Override
+     @Override
         public String toString() {
          return "User: " + name + ",\nEmail: " + email +
             "\nAddress: " + address + ",\nPhone: " + phoneNumber;
          }
+    //Metodo datos
+    public abstract void showData();
 }
