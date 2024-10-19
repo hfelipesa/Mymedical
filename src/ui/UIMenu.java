@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIMenu {
-    public static String[] MONTHS = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-
+    public static final String[] MONTHS = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    public static Doctor doctorLogged;
+    public static Patient patientLogged;
     public static void showMenu(){
         System.out.println("Welcome to My Appointments");
         System.out.println("Selecciona la opción deseada");
@@ -24,12 +25,14 @@ public class UIMenu {
 
             switch (response){
                 case 1:
-                    System.out.println("Doctor");
+                    System.out.println("Welcome Doctor");
+                    authUser(1);
+                    response=0;
                     break;
                 case 2:
+                    System.out.println("Welcome Patient");
+                    authUser(2);
                     response = 0;
-                    showPatientMenu();
-
                     break;
                 case 0:
                     System.out.println("Thank you for you visit");
@@ -38,6 +41,49 @@ public class UIMenu {
                     System.out.println("Please select a correct answer");
             }
         }while (response != 0);
+    }
+
+    private static  void authUser(int userType){
+        //userType=1 Doctor
+        //userType=2 Patient
+
+        ArrayList<Doctor> doctors= new ArrayList<>();
+        doctors.add(new Doctor("Felipe Sanchez","hfelipesa@gmail.com","1234567899","Medico general", "C1"));
+        doctors.add(new Doctor("Estefania Tavera","Estefa@gmail.com","12345688889","Terapeuta R", "C2"));
+
+        ArrayList<Patient> patients = new ArrayList<>();
+        patients.add(new Patient("Camilo","camilo@Gigo.com","321122222"));
+        patients.add(new Patient("Carmen","carmen@gmail.com","12111451"));
+
+        boolean emailCorrect = false;
+
+        do {
+            System.out.println("Insert your email: ");
+            Scanner sc = new Scanner(System.in);
+            String email = sc.nextLine();
+            if (userType == 1){
+                for (Doctor d : doctors){
+                    if (d.getEmail().equals(email)) {
+                        emailCorrect = true;
+                        //obetner datos de log
+                        doctorLogged = d;
+                        UIDoctorMenu.showDoctorMenu();
+
+                    }
+                }
+            }
+            if (userType == 2) {
+                for (Patient p: patients){
+                    if (p.getEmail().equals(email)){
+                        emailCorrect=true;
+                        patientLogged =p;
+                        //Menu Paciente
+                        UIPatientMenu.showPatientMenu();
+                    }
+                }
+            }
+
+        }while(!emailCorrect);
     }
 
     static void showPatientMenu(){
@@ -69,23 +115,5 @@ public class UIMenu {
         }while (response != 0);
     }
 
-    private  static void Auth(int userType){
-        //userType = 1 Doctor
-        //userType = 2 Patient
-        ArrayList<Doctor> doctorsList = new ArrayList<>();
-        doctorsList.add(new Doctor("Felipe sanchez", "felipe@gmail.com", "123456", "Cardiologia","C1"));
-        doctorsList.add(new Doctor("Karen sosa", "Karen@gmail.com","123456", "Pediatra","C2"));
 
-        ArrayList<Patient> patientList = new ArrayList<>();
-        patientList.add(new Patient());
-
-
-        if (userType == 1){
-            System.out.println("Doctor");
-            System.out.println("Enter your speciality");
-        }else if (userType == 2){
-            System.out.println("Patient");
-            System.out.println("Enter your birthday date: dd/mm/yyyy");
-        }
-    }
 }

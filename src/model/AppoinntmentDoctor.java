@@ -9,6 +9,7 @@ public class AppoinntmentDoctor implements ISchedulable {
     private Date date;
     private String time;
 
+
     public AppoinntmentDoctor(Patient patient, Doctor doctor) {
         this.patient = patient;
         this.doctor = doctor;
@@ -31,11 +32,13 @@ public class AppoinntmentDoctor implements ISchedulable {
     }
 
     public String getTime() {
-        return time;
+        return time + " hrs.";
     }
 
     @Override
     public void schedule(Date date, String time) {
+        this.date = date;
+        this.time = time;
 
     }
 }
